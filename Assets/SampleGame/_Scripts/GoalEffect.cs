@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace SampleGame
@@ -8,12 +7,10 @@ namespace SampleGame
     public class GoalEffect : MonoBehaviour
     {
         // top transform of the ParticleSystems
-        [SerializeField]
-        private Transform _particleEffectXform;
+        [SerializeField] private Transform _particleEffectXform;
 
         // delay before particles trigger
-        [SerializeField]
-        private float _delay = 1f;
+        [SerializeField] private float _delay = 1f;
 
         public void PlayEffect()
         {
@@ -29,16 +26,16 @@ namespace SampleGame
             // find ParticleSystems under the top transform
             if (_particleEffectXform != null)
             {
-                ParticleSystem[] particleSystems = 
+                ParticleSystem[] particleSystems =
                     _particleEffectXform.GetComponentsInChildren<ParticleSystem>();
-                
+
                 // stop and play each ParticleSystem
-                foreach (ParticleSystem ps in particleSystems)
+                foreach (ParticleSystem particles in particleSystems)
                 {
-                    if (ps != null)
+                    if (particles != null)
                     {
-                        ps.Stop();
-                        ps.Play();  
+                        particles.Stop();
+                        particles.Play();
                     }
                 }
             }

@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityStandardAssets.Characters.ThirdPerson;
+using UnityEngine.SceneManagement;
 
 namespace SampleGame
 {
@@ -17,7 +16,7 @@ namespace SampleGame
         private Objective _objective;
 
         private bool _isGameOver;
-        public bool IsGameOver { get { return _isGameOver; } }
+        public bool IsGameOver => _isGameOver;
 
 
         // initialize references
@@ -58,6 +57,8 @@ namespace SampleGame
             {
                 _isGameOver = true;
                 _goalEffect.PlayEffect();
+                SceneManager.LoadScene("Level1");
+                //SceneManager.LoadScene(0);
             }
         }
 
