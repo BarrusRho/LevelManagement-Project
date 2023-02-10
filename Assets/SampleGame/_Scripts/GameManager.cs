@@ -18,6 +18,9 @@ namespace SampleGame
         private bool _isGameOver;
         public bool IsGameOver => _isGameOver;
 
+        [SerializeField] private string _nextLevelName;
+        [SerializeField] private int _nextLevelIndex;
+
 
         // initialize references
         private void Awake()
@@ -25,6 +28,15 @@ namespace SampleGame
             _player = Object.FindObjectOfType<ThirdPersonCharacter>();
             _objective = Object.FindObjectOfType<Objective>();
             _goalEffect = Object.FindObjectOfType<GoalEffect>();
+        }
+
+        // check for the end game condition on each frame
+        private void Update()
+        {
+            if (_objective != null & _objective.IsComplete)
+            {
+                EndLevel();
+            }
         }
 
         // end the level
@@ -57,19 +69,57 @@ namespace SampleGame
             {
                 _isGameOver = true;
                 _goalEffect.PlayEffect();
-                SceneManager.LoadScene("Level1");
-                //SceneManager.LoadScene(0);
+                LoadNextLevel();
             }
         }
 
-        // check for the end game condition on each frame
-        private void Update()
+        private void LoadLevel(string levelName)
         {
-            if (_objective != null & _objective.IsComplete)
+            var canLevelBeLoaded = Application.CanStreamedLevelBeLoaded(levelName);
+            if (canLevelBeLoaded)
             {
-                EndLevel();
+                SceneManager.LoadScene(levelName);
+            }
+            else
+            {
+                Debug.LogWarning("GameManager: Load Level Error - Invalid string");
             }
         }
 
+        private void LoadLevel(int levelIndex)
+        {
+            var totalSceneCount = SceneManager.sceneCountInBuildSettings;
+            if (levelIndex >= 0 && levelIndex < totalSceneCount)
+            {
+                SceneManager.LoadScene(levelIndex);
+            }
+            else
+            {
+                Debug.LogWarning("GameManager: Load Level Error - Invalid index");
+            }
+        }
+
+        private void ReloadCurrentLevel()
+        {
+            var currentScene = SceneManager.GetActiveScene();
+            LoadLevel(currentScene.name);
+            //LoadLevel(currentScene.buildIndex);
+        }
+
+        private void LoadNextLevel()
+        {
+            var currentScene = SceneManager.GetActiveScene();
+            var currentSceneIndex = currentScene.buildIndex;
+            var nextSceneIndex = currentSceneIndex + 1;
+            var totalSceneCount = SceneManager.sceneCountInBuildSettings;
+            if (nextSceneIndex == totalSceneCount)
+            {
+                nextSceneIndex = 0;
+            }
+
+            //var nextSceneIndex = (SceneManager.GetActiveScene().buildIndex + 1) % SceneManager.sceneCountInBuildSettings;
+
+            LoadLevel(nextSceneIndex);
+        }
     }
 }
