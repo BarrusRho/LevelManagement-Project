@@ -33,7 +33,7 @@ namespace SampleGame
         // check for the end game condition on each frame
         private void Update()
         {
-            if (_objective != null & _objective.IsComplete)
+            if (_objective != null && _objective.IsComplete)
             {
                 EndLevel();
             }
@@ -99,14 +99,14 @@ namespace SampleGame
             }
         }
 
-        private void ReloadCurrentLevel()
+        public void ReloadCurrentLevel()
         {
             var currentScene = SceneManager.GetActiveScene();
             LoadLevel(currentScene.name);
             //LoadLevel(currentScene.buildIndex);
         }
 
-        private void LoadNextLevel()
+        public void LoadNextLevel()
         {
             var currentScene = SceneManager.GetActiveScene();
             var currentSceneIndex = currentScene.buildIndex;
