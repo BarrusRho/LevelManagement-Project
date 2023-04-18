@@ -1,11 +1,19 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityStandardAssets.Characters.ThirdPerson;
 using UnityEngine.SceneManagement;
+using Object = UnityEngine.Object;
 
 namespace SampleGame
 {
     public class GameManager : MonoBehaviour
     {
+        private static GameManager _instance;
+        public static GameManager Instance
+        {
+            get { return _instance; }
+        }
+
         // reference to player
         private ThirdPersonCharacter _player;
 
@@ -25,9 +33,26 @@ namespace SampleGame
         // initialize references
         private void Awake()
         {
+            if (_instance != null)
+            {
+                Destroy(this.gameObject);
+            }
+            else
+            {
+                _instance = this;
+            }
+            
             _player = Object.FindObjectOfType<ThirdPersonCharacter>();
             _objective = Object.FindObjectOfType<Objective>();
             _goalEffect = Object.FindObjectOfType<GoalEffect>();
+        }
+
+        private void OnDestroy()
+        {
+            if (_instance == this)
+            {
+                _instance = null;
+            }
         }
 
         // check for the end game condition on each frame
