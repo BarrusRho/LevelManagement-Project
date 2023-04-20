@@ -289,7 +289,7 @@ GameObject:
   - component: {fileID: 3736652422518834438}
   - component: {fileID: 3736652422518834433}
   - component: {fileID: 3736652422518834432}
-  - component: {fileID: 2234705181778282280}
+  - component: {fileID: 7207410513794973711}
   m_Layer: 5
   m_Name: CreditsMenuCanvas
   m_TagString: Untagged
@@ -381,7 +381,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &2234705181778282280
+--- !u!114 &7207410513794973711
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -390,7 +390,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3736652422518834435}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4239ef338225d2445a98195cae78c17a, type: 3}
+  m_Script: {fileID: 11500000, guid: 3d81e77e608eea24bb49701f8cecccdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &3736652422557899837
@@ -515,8 +515,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2234705181778282280}
-        m_TargetAssemblyTypeName: LevelManagement.UI.Menu, Assembly-CSharp
+      - m_Target: {fileID: 7207410513794973711}
+        m_TargetAssemblyTypeName: LevelManagement.UI.LevelManagement.UI.CreditsMenu,
+          Assembly-CSharp
         m_MethodName: OnBackButtonPressed
         m_Mode: 1
         m_Arguments:

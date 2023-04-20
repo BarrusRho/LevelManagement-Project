@@ -16,15 +16,13 @@ namespace LevelManagement.Management
             get { return _instance; }
         }
 
-        [Header("Menu Prefabs")] [SerializeField]
-        private Menu _mainMenuPrefab;
-
-        [SerializeField] private Menu _settingsMenuPrefab;
-        [SerializeField] private Menu _creditsMenuPrefab;
-
+        [Header("Menu Prefabs")] 
+        [SerializeField] private MainMenu mainMenuPrefab;
+        [SerializeField] private SettingsMenu settingsMenuPrefab;
+        [SerializeField] private CreditsMenu creditsMenuPrefab;
         [SerializeField] private Transform _menuParent;
 
-        private Stack<Menu> _menuStack = new Stack<Menu>();
+        private Stack<MenuBase> _menuStack = new Stack<MenuBase>();
 
         private void Awake()
         {
@@ -56,7 +54,7 @@ namespace LevelManagement.Management
                 _menuParent = menuParentObject.transform;
             }
 
-            Menu[] menuPrefabs = { _mainMenuPrefab, _settingsMenuPrefab, _creditsMenuPrefab };
+            MenuBase[] menuPrefabs = { mainMenuPrefab, settingsMenuPrefab, creditsMenuPrefab };
 
             foreach (var menuPrefab in menuPrefabs)
             {
@@ -64,7 +62,7 @@ namespace LevelManagement.Management
                 {
                     var menuInstance = Instantiate(menuPrefab, _menuParent);
 
-                    if (menuPrefab != _mainMenuPrefab)
+                    if (menuPrefab != mainMenuPrefab)
                     {
                         menuInstance.gameObject.SetActive(false);
                     }
@@ -77,9 +75,9 @@ namespace LevelManagement.Management
             }
         }
 
-        public void OpenMenu(Menu menuInstance)
+        public void OpenMenu(MenuBase menuBaseInstance)
         {
-            if (menuInstance == null)
+            if (menuBaseInstance == null)
             {
                 Debug.LogWarning($"MenuManager OpenMenu() error: Invalid Menu");
                 return;
@@ -93,9 +91,9 @@ namespace LevelManagement.Management
                 }
             }
             
-            menuInstance.gameObject.SetActive(true);
+            menuBaseInstance.gameObject.SetActive(true);
 
-            _menuStack.Push(menuInstance);
+            _menuStack.Push(menuBaseInstance);
         }
 
         public void CloseMenu()
