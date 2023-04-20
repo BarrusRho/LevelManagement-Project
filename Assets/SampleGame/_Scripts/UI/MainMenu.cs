@@ -3,31 +3,8 @@ using UnityEngine;
 
 namespace LevelManagement.UI
 {
-    public class MainMenu : MenuBase
+    public class MainMenu : MenuBase<MainMenu>
     {
-        private static MainMenu _instance;
-        public static MainMenu Instance => _instance;
-
-        private void Awake()
-        {
-            if (_instance != null)
-            {
-                Destroy(this.gameObject);
-            }
-            else
-            {
-                _instance = this;
-            }
-        }
-
-        private void OnDestroy()
-        {
-            if (_instance == this)
-            {
-                _instance = null;
-            }
-        }
-
         public void OnPlayButtonPressed()
         {
             if (_gameManager != null)
