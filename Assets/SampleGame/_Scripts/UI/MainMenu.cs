@@ -1,9 +1,33 @@
+using System;
 using UnityEngine;
 
 namespace LevelManagement.UI
 {
     public class MainMenu : MenuBase
     {
+        private static MainMenu _instance;
+        public static MainMenu Instance => _instance;
+
+        private void Awake()
+        {
+            if (_instance != null)
+            {
+                Destroy(this.gameObject);
+            }
+            else
+            {
+                _instance = this;
+            }
+        }
+
+        private void OnDestroy()
+        {
+            if (_instance == this)
+            {
+                _instance = null;
+            }
+        }
+
         public void OnPlayButtonPressed()
         {
             if (_gameManager != null)
@@ -14,7 +38,7 @@ namespace LevelManagement.UI
 
         public void OnSettingsButtonPressed()
         {
-            var settingsMenu = transform.parent.Find("SettingsMenuCanvas(Clone)").GetComponent<MenuBase>();
+            var settingsMenu = SettingsMenu.Instance;
 
             if (_menuManager != null && settingsMenu != null)
             {
@@ -24,7 +48,7 @@ namespace LevelManagement.UI
 
         public void OnCreditsButtonPressed()
         {
-            var creditsMenu = transform.parent.Find("CreditsMenuCanvas(Clone)").GetComponent<MenuBase>();
+            var creditsMenu = CreditsMenu.Instance;
 
             if (_menuManager != null && creditsMenu != null)
             {

@@ -10,11 +10,7 @@ namespace LevelManagement.Management
     public class MenuManager : MonoBehaviour
     {
         private static MenuManager _instance;
-
-        public static MenuManager Instance
-        {
-            get { return _instance; }
-        }
+        public static MenuManager Instance => _instance;
 
         [Header("Menu Prefabs")] 
         [SerializeField] private MainMenu mainMenuPrefab;
