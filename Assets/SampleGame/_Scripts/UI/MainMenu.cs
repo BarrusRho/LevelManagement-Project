@@ -1,4 +1,6 @@
 using System;
+using LevelManagement.Management;
+using UnityEditor;
 using UnityEngine;
 
 namespace LevelManagement.UI
@@ -10,6 +12,11 @@ namespace LevelManagement.UI
             if (_gameManager != null)
             {
                 _gameManager.LoadNextLevel();
+            }
+
+            if (MenuManager.Instance != null && GameMenu.Instance != null)
+            {
+                MenuManager.Instance.OpenMenu(GameMenu.Instance);
             }
         }
 

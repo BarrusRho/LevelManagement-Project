@@ -13,9 +13,11 @@ namespace LevelManagement.Management
         public static MenuManager Instance => _instance;
 
         [Header("Menu Prefabs")] 
-        [SerializeField] private MainMenu mainMenuPrefab;
-        [SerializeField] private SettingsMenu settingsMenuPrefab;
-        [SerializeField] private CreditsMenu creditsMenuPrefab;
+        [SerializeField] private MainMenu _mainMenuPrefab;
+        [SerializeField] private SettingsMenu _settingsMenuPrefab;
+        [SerializeField] private CreditsMenu _creditsMenuPrefab;
+        [SerializeField] private PauseMenu _pauseMenuPrefab;
+        [SerializeField] private GameMenu _gameMenuPrefab;
         [SerializeField] private Transform _menuParent;
 
         private Stack<MenuBase> _menuStack = new Stack<MenuBase>();
@@ -31,6 +33,8 @@ namespace LevelManagement.Management
                 _instance = this;
 
                 InitialiseMenus();
+                
+                DontDestroyOnLoad(this.gameObject);
             }
         }
 
@@ -49,8 +53,10 @@ namespace LevelManagement.Management
                 var menuParentObject = new GameObject("Menus");
                 _menuParent = menuParentObject.transform;
             }
+            
+            DontDestroyOnLoad(_menuParent.gameObject);
 
-            MenuBase[] menuPrefabs = { mainMenuPrefab, settingsMenuPrefab, creditsMenuPrefab };
+            MenuBase[] menuPrefabs = { _mainMenuPrefab, _settingsMenuPrefab, _creditsMenuPrefab, _pauseMenuPrefab, _gameMenuPrefab };
 
             foreach (var menuPrefab in menuPrefabs)
             {
@@ -58,7 +64,7 @@ namespace LevelManagement.Management
                 {
                     var menuInstance = Instantiate(menuPrefab, _menuParent);
 
-                    if (menuPrefab != mainMenuPrefab)
+                    if (menuPrefab != _mainMenuPrefab)
                     {
                         menuInstance.gameObject.SetActive(false);
                     }
