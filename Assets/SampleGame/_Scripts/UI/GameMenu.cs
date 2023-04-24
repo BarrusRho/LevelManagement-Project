@@ -11,10 +11,7 @@ namespace LevelManagement.UI
         {
             Time.timeScale = 0f;
 
-            if (MenuManager.Instance != null && PauseMenu.Instance != null)
-            {
-                MenuManager.Instance.OpenMenu(PauseMenu.Instance);
-            }
+            PauseMenu.OpenMenu();
         }
     }
 }
