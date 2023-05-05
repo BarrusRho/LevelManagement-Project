@@ -245,6 +245,8 @@ MonoBehaviour:
     type: 3}
   _gameMenuPrefab: {fileID: 6118181793042353717, guid: f2b52c0ec1af7eb4d807f186b0f53116,
     type: 3}
+  _winMenuPrefab: {fileID: 8556785496377493879, guid: 423e742723673bf4cb3a240cac71cbe7,
+    type: 3}
   _menuParent: {fileID: 743888008}
 --- !u!1 &595717296
 GameObject:
@@ -529,8 +531,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 676ac7334c0934ef4a48795858576377, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _nextLevelName: Level1
-  _nextLevelIndex: 0
 --- !u!1 &1918344797
 GameObject:
   m_ObjectHideFlags: 0

@@ -18,6 +18,7 @@ namespace LevelManagement.Management
         [SerializeField] private CreditsMenu _creditsMenuPrefab;
         [SerializeField] private PauseMenu _pauseMenuPrefab;
         [SerializeField] private GameMenu _gameMenuPrefab;
+        [SerializeField] private WinMenu _winMenuPrefab;
         [SerializeField] private Transform _menuParent;
 
         private Stack<MenuBase> _menuStack = new Stack<MenuBase>();
@@ -56,7 +57,7 @@ namespace LevelManagement.Management
             
             DontDestroyOnLoad(_menuParent.gameObject);
 
-            MenuBase[] menuPrefabs = { _mainMenuPrefab, _settingsMenuPrefab, _creditsMenuPrefab, _pauseMenuPrefab, _gameMenuPrefab };
+            MenuBase[] menuPrefabs = { _mainMenuPrefab, _settingsMenuPrefab, _creditsMenuPrefab, _pauseMenuPrefab, _gameMenuPrefab, _winMenuPrefab };
 
             foreach (var menuPrefab in menuPrefabs)
             {

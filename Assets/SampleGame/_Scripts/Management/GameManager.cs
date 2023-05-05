@@ -27,12 +27,7 @@ namespace SampleGame
 
         private bool _isGameOver;
         public bool IsGameOver => _isGameOver;
-
-        [SerializeField] private string _nextLevelName;
-        [SerializeField] private int _nextLevelIndex;
-        [SerializeField] private int _mainMenuIndex = 0;
-
-
+        
         // initialize references
         private void Awake()
         {
@@ -97,61 +92,8 @@ namespace SampleGame
             {
                 _isGameOver = true;
                 _goalEffect.PlayEffect();
-                LoadNextLevel();
+                WinMenu.OpenMenu();
             }
-        }
-
-        private void LoadLevel(string levelName)
-        {
-            var canLevelBeLoaded = Application.CanStreamedLevelBeLoaded(levelName);
-            if (canLevelBeLoaded)
-            {
-                SceneManager.LoadScene(levelName);
-            }
-            else
-            {
-                Debug.LogWarning("GameManager: Load Level Error - Invalid string");
-            }
-        }
-
-        private void LoadLevel(int levelIndex)
-        {
-            var totalSceneCount = SceneManager.sceneCountInBuildSettings;
-            if (levelIndex >= 0 && levelIndex < totalSceneCount)
-            {
-                if (levelIndex == _mainMenuIndex)
-                {
-                    MainMenu.OpenMenu();
-                }
-                SceneManager.LoadScene(levelIndex);
-            }
-            else
-            {
-                Debug.LogWarning("GameManager: Load Level Error - Invalid index");
-            }
-        }
-
-        public void ReloadCurrentLevel()
-        {
-            var currentScene = SceneManager.GetActiveScene();
-            LoadLevel(currentScene.name);
-            //LoadLevel(currentScene.buildIndex);
-        }
-
-        public void LoadNextLevel()
-        {
-            var currentScene = SceneManager.GetActiveScene();
-            var currentSceneIndex = currentScene.buildIndex;
-            var nextSceneIndex = currentSceneIndex + 1;
-            var totalSceneCount = SceneManager.sceneCountInBuildSettings;
-            if (nextSceneIndex == totalSceneCount)
-            {
-                nextSceneIndex = 0;
-            }
-
-            //var nextSceneIndex = (SceneManager.GetActiveScene().buildIndex + 1) % SceneManager.sceneCountInBuildSettings;
-
-            LoadLevel(nextSceneIndex);
         }
     }
 }
