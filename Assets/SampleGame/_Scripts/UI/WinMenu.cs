@@ -6,8 +6,6 @@ namespace LevelManagement.UI
 {
     public class WinMenu : MenuBase<WinMenu>
     {
-        [SerializeField] private int _mainMenuIndex = 0;
-        
         public void OnNextLevelButtonPressed()
         {
             base.OnBackButtonPressed();
