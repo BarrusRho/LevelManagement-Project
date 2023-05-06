@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using LevelManagement.UI;
 using UnityEditorInternal;
 using UnityEngine;
+using System.Reflection;
 
 namespace LevelManagement.Management
 {
@@ -56,11 +57,13 @@ namespace LevelManagement.Management
             }
             
             DontDestroyOnLoad(_menuParent.gameObject);
+            
+            var myFlags = BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.DeclaredOnly;
+            FieldInfo[] fields = this.GetType().GetFields(myFlags); 
 
-            MenuBase[] menuPrefabs = { _mainMenuPrefab, _settingsMenuPrefab, _creditsMenuPrefab, _pauseMenuPrefab, _gameMenuPrefab, _winMenuPrefab };
-
-            foreach (var menuPrefab in menuPrefabs)
+            foreach (var field in fields)
             {
+                var menuPrefab = field.GetValue(this) as MenuBase;
                 if (menuPrefab != null)
                 {
                     var menuInstance = Instantiate(menuPrefab, _menuParent);
