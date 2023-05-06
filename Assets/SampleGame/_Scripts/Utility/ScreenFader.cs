@@ -8,6 +8,7 @@ namespace LevelManagement.Utility
         [SerializeField] private float _solidAlpha = 1f;
         [SerializeField] private float _clearAlpha = 0f;
         [SerializeField] private float _fadeDuration = 2f;
+        public float FadeDuration => _fadeDuration;
 
         [SerializeField] private MaskableGraphic[] _graphicsToFade;
 
