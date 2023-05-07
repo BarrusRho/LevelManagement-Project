@@ -7,6 +7,7 @@ namespace LevelManagement.Utility
     {
         [SerializeField] private float _transitionLifetime = 0f;
         [SerializeField] private float _delay = 0.3f;
+        public float Delay => _delay;
 
         protected void Awake()
         {

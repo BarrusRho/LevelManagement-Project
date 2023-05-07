@@ -227,7 +227,7 @@ GameObject:
   - component: {fileID: 6766749710257301505}
   - component: {fileID: 5407076606673707035}
   m_Layer: 5
-  m_Name: TransitionFaderUI
+  m_Name: StartTransitionFaderUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

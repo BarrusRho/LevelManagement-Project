@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections;
 using LevelManagement.Management;
 using LevelManagement.UI;
+using LevelManagement.Utility;
 using UnityEngine;
 using UnityStandardAssets.Characters.ThirdPerson;
 using UnityEngine.SceneManagement;
@@ -27,6 +29,8 @@ namespace SampleGame
 
         private bool _isGameOver;
         public bool IsGameOver => _isGameOver;
+        
+        [SerializeField] private TransitionFader _transitionFaderPrefab;
         
         // initialize references
         private void Awake()
@@ -92,8 +96,29 @@ namespace SampleGame
             {
                 _isGameOver = true;
                 _goalEffect.PlayEffect();
-                WinMenu.OpenMenu();
+                StartCoroutine(nameof(WinRoutine));
             }
+        }
+
+        private IEnumerator WinRoutine()
+        {
+            TransitionFader.PlayTransition(_transitionFaderPrefab);
+
+            /*if (_transitionFaderPrefab != null)
+            {
+                _endDelay = _transitionFaderPrefab.Delay + _transitionFaderPrefab.FadeOnDuration;
+            }
+            else
+            {
+                _endDelay = 0f;
+            }*/
+
+             var fadeDelay = (_transitionFaderPrefab != null)
+                ? _transitionFaderPrefab.Delay + _transitionFaderPrefab.FadeOnDuration
+                : 0f;
+            
+            yield return new WaitForSeconds(fadeDelay);
+            WinMenu.OpenMenu();
         }
     }
 }
