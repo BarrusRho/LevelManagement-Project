@@ -381,6 +381,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SplashScreenUI
       objectReference: {fileID: 0}
+    - target: {fileID: 4124786136401720537, guid: 8cb437f5b644b3540b91d10d37478ad0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4124786136401720541, guid: 8cb437f5b644b3540b91d10d37478ad0,
         type: 3}
       propertyPath: m_Pivot.x

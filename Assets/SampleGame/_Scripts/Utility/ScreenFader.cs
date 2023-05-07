@@ -5,14 +5,16 @@ namespace LevelManagement.Utility
 {
     public class ScreenFader : MonoBehaviour
     {
-        [SerializeField] private float _solidAlpha = 1f;
-        [SerializeField] private float _clearAlpha = 0f;
-        [SerializeField] private float _fadeDuration = 2f;
-        public float FadeDuration => _fadeDuration;
+        [SerializeField] protected float _solidAlpha = 1f;
+        [SerializeField] protected float _clearAlpha = 0f;
+        [SerializeField] private float _fadeOnDuration = 2f;
+        [SerializeField] private float _fadeOffDuration = 2f;
+        public float FadeOnDuration => _fadeOnDuration;
+        public float FadeOffDuration => _fadeOffDuration;
 
         [SerializeField] private MaskableGraphic[] _graphicsToFade;
 
-        private void SetAlpha(float alphaValue)
+        protected void SetAlpha(float alphaValue)
         {
             foreach (var graphic in _graphicsToFade)
             {
@@ -37,13 +39,13 @@ namespace LevelManagement.Utility
         public void FadeOff()
         {
             SetAlpha(_solidAlpha);
-            Fade(_clearAlpha, _fadeDuration);
+            Fade(_clearAlpha, _fadeOffDuration);
         }
 
         public void FadeOn()
         {
             SetAlpha(_clearAlpha);
-            Fade(_solidAlpha, _fadeDuration);
+            Fade(_solidAlpha, _fadeOnDuration);
         }
     }
 }

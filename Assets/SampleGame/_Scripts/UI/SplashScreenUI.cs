@@ -33,7 +33,7 @@ namespace LevelManagement.UI
             yield return new WaitForSeconds(_delay);
             _screenFader.FadeOff();
             LevelLoadManager.LoadMainMenu();
-            yield return new WaitForSeconds(_screenFader.FadeDuration);
+            yield return new WaitForSeconds(_screenFader.FadeOnDuration);
             Destroy(this.gameObject);
         }
     }
