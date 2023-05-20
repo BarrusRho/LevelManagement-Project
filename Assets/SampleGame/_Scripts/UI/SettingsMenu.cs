@@ -1,3 +1,4 @@
+using LevelManagement.Management;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -5,6 +6,8 @@ namespace LevelManagement.UI
 {
     public class SettingsMenu : MenuBase<SettingsMenu>
     {
+        private DataManager _dataManager;
+        
         [SerializeField] private Slider _masterVolumeSlider;
         [SerializeField] private Slider _sfxVolumeSlider;
         [SerializeField] private Slider _musicVolumeSlider;
@@ -16,35 +19,63 @@ namespace LevelManagement.UI
         protected override void Awake()
         {
             base.Awake();
-            LoadPlayerPrefs();
+
+            _dataManager = FindObjectOfType<DataManager>();
+        }
+
+        private void Start()
+        {
+            LoadData();
         }
 
         public void OnMasterVolumeChanged(float volume)
         {
-            PlayerPrefs.SetFloat(MASTER_VOLUME, volume);
+            if (_dataManager != null)
+            {
+                _dataManager.MasterVolume = volume;
+            }
+            //PlayerPrefs.SetFloat(MASTER_VOLUME, volume);
         }
 
         public void OnSFXVolumeChanged(float volume)
         {
-            PlayerPrefs.SetFloat(SFX_VOLUME, volume);
+            if (_dataManager != null)
+            {
+                _dataManager.SfxVolume = volume;
+            }
+            
+            //PlayerPrefs.SetFloat(SFX_VOLUME, volume);
         }
 
         public void OnMusicVolumeChanged(float volume)
         {
-            PlayerPrefs.SetFloat(MUSIC_VOLUME, volume);
+            if (_dataManager != null)
+            {
+                _dataManager.MusicVolume = volume;
+            }
+            //PlayerPrefs.SetFloat(MUSIC_VOLUME, volume);
         }
         
         public override void OnBackButtonPressed()
         {
             base.OnBackButtonPressed();
-            PlayerPrefs.Save();
+            //PlayerPrefs.Save();
         }
 
-        public void LoadPlayerPrefs()
+        public void LoadData()
         {
-            _masterVolumeSlider.value = PlayerPrefs.GetFloat(MASTER_VOLUME);
+            if (_dataManager == null || _masterVolumeSlider == null || _sfxVolumeSlider == null || _musicVolumeSlider == null)
+            {
+                return;
+            }
+            
+            _masterVolumeSlider.value = _dataManager.MasterVolume;
+            _sfxVolumeSlider.value = _dataManager.SfxVolume;
+            _musicVolumeSlider.value = _dataManager.MusicVolume;
+
+            /*_masterVolumeSlider.value = PlayerPrefs.GetFloat(MASTER_VOLUME);
             _sfxVolumeSlider.value = PlayerPrefs.GetFloat(SFX_VOLUME);
-            _musicVolumeSlider.value = PlayerPrefs.GetFloat(MUSIC_VOLUME);
+            _musicVolumeSlider.value = PlayerPrefs.GetFloat(MUSIC_VOLUME);*/
         }
     }
 }
