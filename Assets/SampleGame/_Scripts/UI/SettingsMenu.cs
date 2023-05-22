@@ -7,7 +7,7 @@ namespace LevelManagement.UI
     public class SettingsMenu : MenuBase<SettingsMenu>
     {
         private DataManager _dataManager;
-        
+
         [SerializeField] private Slider _masterVolumeSlider;
         [SerializeField] private Slider _sfxVolumeSlider;
         [SerializeField] private Slider _musicVolumeSlider;
@@ -43,7 +43,7 @@ namespace LevelManagement.UI
             {
                 _dataManager.SfxVolume = volume;
             }
-            
+
             //PlayerPrefs.SetFloat(SFX_VOLUME, volume);
         }
 
@@ -55,20 +55,28 @@ namespace LevelManagement.UI
             }
             //PlayerPrefs.SetFloat(MUSIC_VOLUME, volume);
         }
-        
+
         public override void OnBackButtonPressed()
         {
             base.OnBackButtonPressed();
             //PlayerPrefs.Save();
+
+            if (_dataManager != null)
+            {
+                _dataManager.Save();
+            }
         }
 
         public void LoadData()
         {
-            if (_dataManager == null || _masterVolumeSlider == null || _sfxVolumeSlider == null || _musicVolumeSlider == null)
+            if (_dataManager == null || _masterVolumeSlider == null || _sfxVolumeSlider == null ||
+                _musicVolumeSlider == null)
             {
                 return;
             }
             
+            _dataManager.Load();
+
             _masterVolumeSlider.value = _dataManager.MasterVolume;
             _sfxVolumeSlider.value = _dataManager.SfxVolume;
             _musicVolumeSlider.value = _dataManager.MusicVolume;

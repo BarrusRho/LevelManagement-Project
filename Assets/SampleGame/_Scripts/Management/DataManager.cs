@@ -7,6 +7,7 @@ namespace LevelManagement.Management
     public class DataManager : MonoBehaviour
     {
         private SaveData _saveData;
+        private JsonSave _jsonSave;
 
         public float MasterVolume
         {
@@ -29,6 +30,17 @@ namespace LevelManagement.Management
         private void Awake()
         {
             _saveData = new SaveData();
+            _jsonSave = new JsonSave();
+        }
+
+        public void Save()
+        {
+            _jsonSave.Save(_saveData);
+        }
+
+        public void Load()
+        {
+            _jsonSave.Load(_saveData);
         }
     }
 }
