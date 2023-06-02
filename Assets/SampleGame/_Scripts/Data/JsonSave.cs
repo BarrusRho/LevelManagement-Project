@@ -20,10 +20,8 @@ namespace LevelManagement.Data
             var saveFilename = GetSaveFilename();
             var filestream = new FileStream(saveFilename, FileMode.Create);
 
-            using (StreamWriter writer = new StreamWriter(filestream))
-            {
-                writer.Write(json);
-            }
+            using StreamWriter writer = new StreamWriter(filestream);
+            writer.Write(json);
         }
 
         public bool Load(SaveData data)
@@ -31,11 +29,9 @@ namespace LevelManagement.Data
             var loadFilename = GetSaveFilename();
             if (File.Exists(loadFilename))
             {
-                using (StreamReader reader = new StreamReader(loadFilename))
-                {
-                    var json = reader.ReadToEnd();
-                    JsonUtility.FromJsonOverwrite(json, data);
-                }
+                using StreamReader reader = new StreamReader(loadFilename);
+                var json = reader.ReadToEnd();
+                JsonUtility.FromJsonOverwrite(json, data);
 
                 return true;
             }
