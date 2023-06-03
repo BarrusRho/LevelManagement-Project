@@ -5,12 +5,6 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/SampleGame/Scenes/SplashScreen.unity
     guid: 9363259bbbbebf9419aa5150d9a8638b
@@ -23,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/SampleGame/Scenes/SampleScenes/Level2.unity
     guid: 11bbb0426e526480aac42f72af1de7d1
+  - enabled: 1
+    path: Assets/SampleGame/Scenes/SampleScenes/Level3.unity
+    guid: 8ed760761e3c8ae40935eaa71505ee4f
   m_configObjects: {}
