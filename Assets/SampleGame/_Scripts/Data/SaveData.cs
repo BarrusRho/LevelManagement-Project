@@ -10,12 +10,15 @@ namespace LevelManagement.Data
 
         public float masterVolume, sfxVolume, musicVolume;
 
+        public string hashValue;
+
         public SaveData()
         {
             playerName = _defaultPlayerName;
             masterVolume = 0f;
             sfxVolume = 0f;
             musicVolume = 0f;
+            hashValue = String.Empty;
         }
     }
 }
