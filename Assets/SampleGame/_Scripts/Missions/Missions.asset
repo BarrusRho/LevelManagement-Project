@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbe43327ec85ab54aa8c8c1beab3ac25, type: 3}
+  m_Name: Missions
+  m_EditorClassIdentifier: 
+  _missionsList:
+  - _missionName: 'Level 1: Tutorial'
+    _missionDescription: Starter level. Tutorial and introduction.
+    _sceneName: Level1
+    _missionId: L1
+    _image: {fileID: 21300000, guid: 5af423bbbaa8cd34e9797bf7dd1f35a9, type: 3}
+  - _missionName: 'Leave 2: Tutorial'
+    _missionDescription: Intermediate level. Take the player forward.
+    _sceneName: Level2
+    _missionId: L2
+    _image: {fileID: 21300000, guid: 55c2fcbbf31717c429d1eea90e7edb5f, type: 3}
+  - _missionName: 'Level 3: Another Level'
+    _missionDescription: Another level of the game.
+    _sceneName: Level3
+    _missionId: L3
+    _image: {fileID: 21300000, guid: 02ae6f95ffad4b546b424208b1de8a64, type: 3}
