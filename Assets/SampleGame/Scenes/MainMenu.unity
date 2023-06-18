@@ -248,6 +248,8 @@ MonoBehaviour:
   _winMenuPrefab: {fileID: 8556785496377493879, guid: 423e742723673bf4cb3a240cac71cbe7,
     type: 3}
   _menuParent: {fileID: 743888008}
+  _levelSelectMenu: {fileID: 1307124813487835372, guid: 3a0306498267f344ea415609f4a1ea7e,
+    type: 3}
 --- !u!1 &595717296
 GameObject:
   m_ObjectHideFlags: 0

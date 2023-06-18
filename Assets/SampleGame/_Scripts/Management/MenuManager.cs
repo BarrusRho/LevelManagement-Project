@@ -18,6 +18,7 @@ namespace LevelManagement.Management
         [SerializeField] private GameMenu _gameMenuPrefab;
         [SerializeField] private WinMenu _winMenuPrefab;
         [SerializeField] private Transform _menuParent;
+        [SerializeField] private MissionSelectMenu _levelSelectMenu;
 
         private Stack<MenuBase> _menuStack = new Stack<MenuBase>();
 

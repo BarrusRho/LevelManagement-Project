@@ -11,8 +11,6 @@ namespace LevelManagement.UI
     {
         private DataManager _dataManager;
         
-        [SerializeField] private float _playDelay = 0.5f;
-        [SerializeField] private TransitionFader _transitionFaderPrefab;
         [SerializeField] private TMP_InputField _inputField;
 
         protected override void Awake()
@@ -55,15 +53,7 @@ namespace LevelManagement.UI
 
         public void OnPlayButtonPressed()
         {
-            StartCoroutine(nameof(OnPlayButtonPressedRoutine));
-        }
-
-        private IEnumerator OnPlayButtonPressedRoutine()
-        {
-            TransitionFader.PlayTransition(_transitionFaderPrefab);
-            LevelLoadManager.LoadNextLevel();
-            yield return new WaitForSeconds(_playDelay);
-            GameMenu.OpenMenu();
+            MissionSelectMenu.OpenMenu();
         }
 
         public void OnSettingsButtonPressed()
